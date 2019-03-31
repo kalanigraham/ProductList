@@ -4,6 +4,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ProductCatalog.BusinessLayer;
+using ProductCatalog.BusinessLayer.Interfaces;
+using ProductCatalog.DataLayer;
+using ProductCatalog.DataLayer.Interfaces;
+using ProductCatalog.DataStorage;
+using ProductCatalog.DataStorage.Interfaces;
+using ProductCatalog.Middleware;
 
 namespace ProductCatalog
 {
@@ -26,6 +33,10 @@ namespace ProductCatalog
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddScoped<IProductBusiness, ProductBusiness>();
+            services.AddScoped<IProductData, ProductData>();
+            services.AddSingleton<IDataStore, DataStore>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +53,8 @@ namespace ProductCatalog
 
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
+
+            app.UseMiddleware<CustomExceptionMiddleware>();
 
             app.UseMvc(routes =>
             {

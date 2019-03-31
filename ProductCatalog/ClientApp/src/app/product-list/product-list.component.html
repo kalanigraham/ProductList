@@ -1,0 +1,25 @@
+<h1>Product List</h1>
+
+<p *ngIf="!products"><em>Loading...</em></p>
+<add-product></add-product>
+<div *ngIf="products?.length > 0">
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
+        <td>{{ product.quantity }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="products?.length == 0">
+  There are no products in the list.
+</div>

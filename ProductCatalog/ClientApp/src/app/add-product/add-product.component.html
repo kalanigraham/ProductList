@@ -1,0 +1,40 @@
+<div align="center" *ngIf = "visible">
+  <table>
+    <tr>
+      <td>
+        <label id="name" tooltip="The Name field is required." placement="right">*Name: </label>
+      </td>
+      <td>
+        <input id="nameInput" type="text" [(ngModel)]="name"/>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label id="desc">Description: </label>
+      </td>
+      <td>
+        <input id="descInput" [(ngModel)]="desc" />
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label id="quantity" tooltip="The Quantity field is required" placement="right">*Quantity: </label>
+      </td>
+      <td>
+        <input id="quantityInput" [(ngModel)]="quantity"/>
+      </td>
+    </tr>
+  </table>
+</div>
+<div align="center" *ngIf = "visible">
+  <button class="AddProduct" (click)="validate()">
+  <!-- class="mdc-button mdc-button--raised">-->
+  Add Product
+  </button>
+</div>
+<div align="center" *ngIf="!visible">
+  <button class="CreateProduct" (click)="showInput()">
+    <!-- class="mdc-button mdc-button--raised">-->
+    Create a new product
+  </button>
+</div>
